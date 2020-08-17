@@ -3,10 +3,9 @@ from sklearn.base import BaseEstimator, TransformerMixin
 
 # All sklearn Transforms must have the `transform` and `fit` methods
 class DropColumns(BaseEstimator, TransformerMixin):
-    def __init__(self, columns,y):
+    def __init__(self, columns):
         self.columns = columns
-        self.y = y
-
+        
     def fit(self, X, y=None):
         return self
 
@@ -17,9 +16,10 @@ class DropColumns(BaseEstimator, TransformerMixin):
         return data.drop(labels=self.columns, axis='columns')
 
 class ChangeColumns(BaseEstimator, TransformerMixin):
-    def __init__(self, target):
+    def __init__(self, target,y):
         self.targetfinal = target
-        
+        self.y = y
+
     def fit(self, X, y=None):
         return self
     
