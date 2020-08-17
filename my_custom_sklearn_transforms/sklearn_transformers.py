@@ -14,17 +14,17 @@ class DropColumns(BaseEstimator, TransformerMixin):
         data = X.copy()
         # Retornamos um novo dataframe sem as colunas indesejadas
         return data.drop(labels=self.columns, axis='columns')
-        
+
 class ChangeColumns(BaseEstimator, TransformerMixin):
     def __init__(self, target):
         self.target = target
 
-    def fit(self, X, y=None):
+    def fit(self, X, y):
         return self
     
-    def transform(self, X):
+    def transform(self, X,y):
         # Primero copiamos el dataframe de datos de entrada 'X'
-        data = X.copy()
+        data = pd.concat([X.copy(), y.copy()], axis=1, sort=False)
         #Los valores faltantes se llenan con la mediana del tipo de perfil
         for col in data.columns:
             if(col!=self.target):
@@ -32,5 +32,6 @@ class ChangeColumns(BaseEstimator, TransformerMixin):
 
         #Se elimina las filas con un NaN en la columna profile.
         data.dropna( inplace=True)
+        data.drop(labels=[self.target], axis='columns')
 
         return data
