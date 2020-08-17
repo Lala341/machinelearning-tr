@@ -19,12 +19,13 @@ class ChangeColumns(BaseEstimator, TransformerMixin):
     def __init__(self, target):
         self.targetfinal = target
         
-    def fit(self, X, y=None):
+    def fit(self, X, y):
         return self
     
-    def transform(self, X):
+    def transform(self, X, y):
         # Primero copiamos el dataframe de datos de entrada 'X'
         data = X.copy()
+        data[self.targetfinal]=y.copy()[self.targetfinal]
         #Los valores faltantes se llenan con la mediana del tipo de perfil
         for col in data.columns:
             if(col!=self.targetfinal):
