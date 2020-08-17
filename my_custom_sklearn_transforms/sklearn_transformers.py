@@ -16,8 +16,8 @@ class DropColumns(BaseEstimator, TransformerMixin):
         return data.drop(labels=self.columns, axis='columns')
 
 class ChangeColumns(BaseEstimator, TransformerMixin):
-    def __init__(self, target):
-        self.targetfinal = target
+    def __init__(self, targetfinal):
+        self.targetfinal = targetfinal
         
     def fit(self, X, y=None):
         return self
@@ -32,6 +32,6 @@ class ChangeColumns(BaseEstimator, TransformerMixin):
 
         #Se elimina las filas con un NaN en la columna profile.
         #data.dropna(inplace=True)
-        data.drop(labels=[self.targetfinal], axis='columns')
+        #data.drop(labels=[self.targetfinal], axis='columns')
 
         return data
