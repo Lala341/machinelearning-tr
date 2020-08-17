@@ -25,9 +25,10 @@ class DropChangeColumns(BaseEstimator, TransformerMixin):
     def transform(self, X):
         # Primeiro realizamos a cópia do dataframe 'X' de entrada
         data = X.copy()
+        columns=[self.targetfinal]
         # Retornamos um novo dataframe sem as colunas indesejadas
         if self.targetfinal in data.columns:
-            data.drop(labels=self.columns, axis='columns')
+            data.drop(labels=columns, axis='columns')
         return data
 
 class ChangeColumns(BaseEstimator, TransformerMixin):
