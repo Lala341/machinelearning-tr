@@ -23,7 +23,7 @@ class ChangeColumns(BaseEstimator, TransformerMixin):
         self.y = y
         return self
     
-    def transform(self, X, y):
+    def transform(self, X):
         # Primero copiamos el dataframe de datos de entrada 'X'
         data = X.copy()
         data[self.targetfinal]=self.y.copy()[self.targetfinal]
