@@ -17,13 +17,12 @@ class DropColumns(BaseEstimator, TransformerMixin):
 
 class ChangeColumns(BaseEstimator, TransformerMixin):
     def __init__(self, target):
-        self.targetfinal = target
-
+        
     def fit(self, X, y):
-        self.y=y
+        self.y = y
         return self
     
-    def transform(self, X:
+    def transform(self, X, y):
         # Primero copiamos el dataframe de datos de entrada 'X'
         data = X.copy()
         data[self.targetfinal]=self.y.copy()[self.targetfinal]
