@@ -17,6 +17,7 @@ class DropColumns(BaseEstimator, TransformerMixin):
 
 class ChangeColumns(BaseEstimator, TransformerMixin):
     def __init__(self, target):
+        self.targetfinal = target
         
     def fit(self, X, y):
         self.y = y
