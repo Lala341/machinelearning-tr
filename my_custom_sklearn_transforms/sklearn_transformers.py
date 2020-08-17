@@ -22,7 +22,7 @@ class ChangeColumns(BaseEstimator, TransformerMixin):
     def fit(self, X, y):
         return self
     
-    def transform(self, X,y):
+    def transform(self, X, y):
         # Primero copiamos el dataframe de datos de entrada 'X'
         data = pd.concat([X.copy(), y.copy()], axis=1, sort=False)
         #Los valores faltantes se llenan con la mediana del tipo de perfil
